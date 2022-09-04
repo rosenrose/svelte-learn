@@ -1,29 +1,36 @@
 <script>
-  let name = "world!";
-  let isVisible = true;
+  // import { onMount } from "svelte";
+  // onMount(() => {
+  //   const box = document.querySelector(".box");
+  //   box.addEventListener("click", () => isRed = !isRed);
+  // });
 
-  let fruits = ["apple", "banana", "grape", "peach"];
+  let name = "world!";
+  let isRed = false;
+
+  let text = "text";
 </script>
 
-<button on:click={() => isVisible = !isVisible}>toggle</button>
-{#if isVisible}
-  <h1>Hello {name}</h1>
-{:else}
-  <h2>No name</h2>
-{/if}
+<h1>Hello {name}</h1>
+<div class="box"
+     style="--color: {isRed ? 'red' : 'seagreen'};"
+     on:click={() => isRed = !isRed}
+     on:mouseenter={() => name = "enter"}
+     on:mouseleave={() => name = "leave"}
+     >
+</div>
 
-<button on:click={() => fruits = fruits.slice(1)}>Eat slice</button>
-<button on:click={() => fruits.shift()}>Eat shift</button>
-<ul>
-  {#each fruits as fruit, i}
-    <li>{i} {fruit}</li>
-  {:else}
-    <p>No fruits</p>
-  {/each}
-</ul>
+<h2>{text}</h2>
+<!-- <input type="text" value={text} on:input={(e) => text = e.target.value} /> -->
+<input type="text" bind:value={text} />
 
 <style>
   h1 {
     color: skyblue;
+  }
+  .box {
+    width: 15rem;
+    height: 10rem;
+    background-color: var(--color);
   }
 </style>
