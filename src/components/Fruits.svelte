@@ -12,20 +12,20 @@
     name = "reverse";
   }
 
-  (() => {
+  label: {
     if (!slice) {
-      return;
+      break label;
     }
   
     if (Array.isArray(slice)) {
       computedFruits = computedFruits.slice(...slice);
       name += ` slice ${slice.join(", ")}`;
-      return;
+      break label;
     }
   
     computedFruits = computedFruits.slice(...slice.split(","));
     name += ` slice ${slice}`;
-  })();
+  }
 </script>
 
 <h2>Fruits {name}</h2>
