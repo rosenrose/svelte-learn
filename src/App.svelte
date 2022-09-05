@@ -1,14 +1,13 @@
 <script>
-  import Fruits from "./components/Fruits.svelte";
+  import { nameStore } from "./store";
+  import Parent from "./components/Parent.svelte";
 
-  let fruits = ["apple", "banana", "grape", "peach"];
+  // let name = $nameStore;
+  // $: $nameStore = name;
 </script>
 
-<Fruits {fruits} />
-<Fruits {fruits} reverse />
-<Fruits {fruits} slice="-2" />
-<Fruits {fruits} slice={[0, 3]} reverse />
-<Fruits {fruits} slice="0, 3" />
+<input type="text" bind:value={$nameStore} />
+<Parent />
 
 <style>
 </style>
