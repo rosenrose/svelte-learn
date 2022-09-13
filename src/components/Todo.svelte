@@ -23,6 +23,13 @@
     $todosStore = $todosStore.filter((t) => t.id !== todo.id);
     saveTodos();
   };
+
+  import { onMount, onDestroy, beforeUpdate, afterUpdate } from "svelte";
+
+  onMount(() => console.log(todo.text, "Mounted"));
+  onDestroy(() => console.log(todo.text, "Destroyed"));
+  beforeUpdate(() => console.log(todo.text, "Before Update"));
+  afterUpdate(() => console.log(todo.text, "After Update"));
 </script>
 
 <li>
