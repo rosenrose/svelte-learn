@@ -47,6 +47,7 @@
 </script>
 
 <li>
+  <slot name="header">no header</slot>
   {#if isEdit}
     <form on:submit|preventDefault={onEdit}>
       <input type="text" bind:value={todo.text} required />
@@ -57,8 +58,10 @@
     <button on:click={toggleEdit}>Edit</button>
   {/if}
   <button on:click={deleteTodo}>❌</button>
+  <slot name="footer">no footer</slot>
 </li>
 
+<!-- <slot>slot</slot> -->
 <style>
   form {
     display: inline;

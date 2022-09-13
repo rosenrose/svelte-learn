@@ -29,7 +29,11 @@
 
 <ul>
   {#each todos as todo (todo.id)}
-    <Todo {...{ todo, saveTodos }} />
+    <Todo {...{ todo, saveTodos }}>
+      <!-- <span>hello</span> -->
+      <h1 slot="header">head</h1>
+      <p slot="footer">foot</p>
+    </Todo>
   {:else}
     <h2>No Todos</h2>
   {/each}
