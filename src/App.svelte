@@ -1,5 +1,5 @@
 <script>
-  import Todo from "./components/Todo.svelte";
+  import Todo, { alertCount } from "./components/Todo.svelte";
   import { todosStore, TODOS_KEY } from "./store";
 
   let text = "";
@@ -20,7 +20,7 @@
   };
 </script>
 
-<!-- <button on:click={() => console.log(todos)}>d</button> -->
+<button on:click={alertCount}>Count</button>
 
 <form on:submit|preventDefault={addTodo}>
   <input type="text" bind:value={text} required />
@@ -33,7 +33,16 @@
   {:else}
     <h2>No Todos</h2>
   {/each}
+  <style>
+    button {
+      border-radius: 1rem;
+    }
+  </style>
 </ul>
 
 <style>
+  :global(form) {
+    border: 1px dashed cyan;
+    width: fit-content;
+  }
 </style>

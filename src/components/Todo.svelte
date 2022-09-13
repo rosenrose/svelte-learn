@@ -1,7 +1,17 @@
+<script context="module">
+  let componentsCount = 0;
+
+  export function alertCount() {
+    alert(componentsCount);
+  }
+</script>
+
 <script>
   import { todosStore } from "../store";
   export let todo, saveTodos;
 
+  componentsCount += 1;
+  console.log(`total: ${componentsCount}`);
   let isEdit = false;
 
   const toggleEdit = () => (isEdit = !isEdit);
@@ -27,7 +37,11 @@
   import { onMount, onDestroy, beforeUpdate, afterUpdate } from "svelte";
 
   onMount(() => console.log(todo.text, "Mounted"));
-  onDestroy(() => console.log(todo.text, "Destroyed"));
+  onDestroy(() => {
+    console.log(todo.text, "Destroyed");
+    componentsCount -= 1;
+    console.log(`total: ${componentsCount}`);
+  });
   beforeUpdate(() => console.log(todo.text, "Before Update"));
   afterUpdate(() => console.log(todo.text, "After Update"));
 </script>
@@ -48,5 +62,9 @@
 <style>
   form {
     display: inline;
+  }
+
+  :global(form) :global(input) {
+    border: none;
   }
 </style>
